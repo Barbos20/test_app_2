@@ -69,6 +69,176 @@ class Localized {
       args: [],
     );
   }
+
+  /// `Что чувствуешь?`
+  String get youFeel {
+    return Intl.message(
+      'Что чувствуешь?',
+      name: 'youFeel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Настроение`
+  String get mood {
+    return Intl.message(
+      'Настроение',
+      name: 'mood',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Бешенство`
+  String get anger {
+    return Intl.message(
+      'Бешенство',
+      name: 'anger',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Спокойствие`
+  String get calmness {
+    return Intl.message(
+      'Спокойствие',
+      name: 'calmness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Страх`
+  String get fear {
+    return Intl.message(
+      'Страх',
+      name: 'fear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Радость`
+  String get happy {
+    return Intl.message(
+      'Радость',
+      name: 'happy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Грусть`
+  String get sadness {
+    return Intl.message(
+      'Грусть',
+      name: 'sadness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сила`
+  String get strong {
+    return Intl.message(
+      'Сила',
+      name: 'strong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Уровень стресса`
+  String get stressLevel {
+    return Intl.message(
+      'Уровень стресса',
+      name: 'stressLevel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Низкий`
+  String get lowLevel {
+    return Intl.message(
+      'Низкий',
+      name: 'lowLevel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Высокий`
+  String get hightLevel {
+    return Intl.message(
+      'Высокий',
+      name: 'hightLevel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Самооценка`
+  String get selfAssessment {
+    return Intl.message(
+      'Самооценка',
+      name: 'selfAssessment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Уверенность`
+  String get confidence {
+    return Intl.message(
+      'Уверенность',
+      name: 'confidence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Неувереннось`
+  String get uncertainty {
+    return Intl.message(
+      'Неувереннось',
+      name: 'uncertainty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Заметки`
+  String get notes {
+    return Intl.message(
+      'Заметки',
+      name: 'notes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Введите заметку`
+  String get enterNotes {
+    return Intl.message(
+      'Введите заметку',
+      name: 'enterNotes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Сохранить`
+  String get safe {
+    return Intl.message(
+      'Сохранить',
+      name: 'safe',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Localized> {

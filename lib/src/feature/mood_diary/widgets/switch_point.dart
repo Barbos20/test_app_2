@@ -23,8 +23,10 @@ class SwitchPoint extends StatefulWidget {
 class SwitchPointState extends State<SwitchPoint> {
   GlobalKey firstKey = GlobalKey();
   GlobalKey secondKey = GlobalKey();
+  GlobalKey rowKey = GlobalKey();
   double firstWidth = 0.0;
   double secondWidth = 0.0;
+  double rowHeight = 0.0;
   bool isWidthCalculated = false;
 
   @override
@@ -44,6 +46,7 @@ class SwitchPointState extends State<SwitchPoint> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -52,13 +55,19 @@ class SwitchPointState extends State<SwitchPoint> {
               firstKey.currentContext?.findRenderObject() as RenderBox?;
           final RenderBox? secondRenderBox =
               secondKey.currentContext?.findRenderObject() as RenderBox?;
+          final RenderBox? rowRenderBox =
+              secondKey.currentContext?.findRenderObject() as RenderBox?;
           final newFirstWidth = firstRenderBox?.size.width ?? 0.0;
           final newSecondWidth = secondRenderBox?.size.width ?? 0.0;
+          final newRowHeight = rowRenderBox?.size.height ?? 0.0;
 
-          if (newFirstWidth != firstWidth || newSecondWidth != secondWidth) {
+          if (newFirstWidth != firstWidth ||
+              newSecondWidth != secondWidth ||
+              newRowHeight != rowHeight) {
             setState(() {
               firstWidth = newFirstWidth;
               secondWidth = newSecondWidth;
+              rowHeight = newRowHeight;
               isWidthCalculated = true;
             });
           }
@@ -78,7 +87,7 @@ class SwitchPointState extends State<SwitchPoint> {
                     left: widget.isMoodDiarySelected ? 0 : firstWidth,
                     right: widget.isMoodDiarySelected ? secondWidth : 0,
                     child: Container(
-                      height: 39,
+                      height: rowHeight,
                       decoration: BoxDecoration(
                         color: AppColors.mandarin,
                         borderRadius: BorderRadius.circular(47),
@@ -86,6 +95,7 @@ class SwitchPointState extends State<SwitchPoint> {
                     ),
                   ),
                 Row(
+                  key: rowKey,
                   children: [
                     GestureDetector(
                       key: firstKey,

@@ -1,4 +1,21 @@
 {
     "moodDiary":"Дневник настроения",
-    "static":"Статистика"
+    "static":"Статистика",
+    "youFeel":"Что чувствуешь?",
+    "mood":"Настроение",
+    "anger":"Бешенство",
+    "calmness":"Спокойствие",
+    "fear":"Страх",
+    "happy":"Радость",
+    "sadness":"Грусть",
+    "strong":"Сила",
+    "stressLevel":"Уровень стресса",
+    "lowLevel":"Низкий",
+    "hightLevel":"Высокий",
+    "selfAssessment":"Самооценка",
+    "confidence":"Уверенность",
+    "uncertainty":"Неувереннось",
+    "notes":"Заметки",
+    "enterNotes":"Введите заметку",
+    "safe":"Сохранить"
 }

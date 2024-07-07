@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:test_app_2/gen/assets.gen.dart';
+import 'package:test_app_2/src/common/localization/l10n.dart';
+import 'package:test_app_2/src/feature/mood_diary/widgets/feel.dart';
 import 'package:test_app_2/src/feature/mood_diary/widgets/switch_point.dart';
 import 'package:test_app_2/src/theme/app_color.dart';
 import 'package:test_app_2/src/theme/app_text_style.dart';
@@ -55,15 +58,17 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
         ),
       ),
       body: bodyWithPadding(
-        child: Column(
-          children: [
-            Center(
-              child: SwitchPoint(
+        child: Center(
+          child: Column(
+            children: [
+              SwitchPoint(
                 toggleSelection: toggleSelection,
                 isMoodDiarySelected: isMoodDiarySelected,
               ),
-            )
-          ],
+              const Gap(30),
+              feel(context: context),
+            ],
+          ),
         ),
       ),
     );
