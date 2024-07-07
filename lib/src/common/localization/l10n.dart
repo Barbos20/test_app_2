@@ -239,6 +239,116 @@ class Localized {
       args: [],
     );
   }
+
+  /// `Возбуждение`
+  String get excitement {
+    return Intl.message(
+      'Возбуждение',
+      name: 'excitement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Восторг`
+  String get delight {
+    return Intl.message(
+      'Восторг',
+      name: 'delight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Игривост`
+  String get playfulness {
+    return Intl.message(
+      'Игривост',
+      name: 'playfulness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Наслаждение`
+  String get enjoyment {
+    return Intl.message(
+      'Наслаждение',
+      name: 'enjoyment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Очарование`
+  String get charm {
+    return Intl.message(
+      'Очарование',
+      name: 'charm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Осознанность`
+  String get awareness {
+    return Intl.message(
+      'Осознанность',
+      name: 'awareness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Смелость`
+  String get courage {
+    return Intl.message(
+      'Смелость',
+      name: 'courage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Удовольствие`
+  String get pleasure {
+    return Intl.message(
+      'Удовольствие',
+      name: 'pleasure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Чувственность`
+  String get sensuality {
+    return Intl.message(
+      'Чувственность',
+      name: 'sensuality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Энергичность`
+  String get energy {
+    return Intl.message(
+      'Энергичность',
+      name: 'energy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Экстравагантность`
+  String get extravagance {
+    return Intl.message(
+      'Экстравагантность',
+      name: 'extravagance',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Localized> {

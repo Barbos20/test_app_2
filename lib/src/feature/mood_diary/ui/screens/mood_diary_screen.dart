@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:test_app_2/gen/assets.gen.dart';
-import 'package:test_app_2/src/common/localization/l10n.dart';
 import 'package:test_app_2/src/feature/mood_diary/widgets/feel.dart';
 import 'package:test_app_2/src/feature/mood_diary/widgets/switch_point.dart';
 import 'package:test_app_2/src/theme/app_color.dart';
@@ -20,12 +19,26 @@ class MoodDiaryScreen extends StatefulWidget {
 }
 
 class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
+  String? selectedPoint;
+  String? selectedDescription;
   bool isMoodDiarySelected = true;
   final date = DateFormat('d MMMM HH:mm', 'ru').format(DateTime.now());
 
   void toggleSelection() {
     setState(() {
       isMoodDiarySelected = !isMoodDiarySelected;
+    });
+  }
+
+  void onPointSelected(String point) {
+    setState(() {
+      selectedPoint = point;
+    });
+  }
+
+  void onDescriptionSelected(String description) {
+    setState(() {
+      selectedDescription = description;
     });
   }
 
@@ -66,7 +79,12 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
                 isMoodDiarySelected: isMoodDiarySelected,
               ),
               const Gap(30),
-              feel(context: context),
+              Feel(
+                selectedPoint: selectedPoint,
+                selectedDescription: selectedDescription,
+                onPointSelected: onPointSelected,
+                onDescriptionSelected: onDescriptionSelected,
+              ),
             ],
           ),
         ),

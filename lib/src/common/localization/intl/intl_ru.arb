@@ -17,5 +17,16 @@
     "uncertainty":"Неувереннось",
     "notes":"Заметки",
     "enterNotes":"Введите заметку",
-    "safe":"Сохранить"
+    "safe":"Сохранить",
+    "excitement":"Возбуждение",
+    "delight":"Восторг",
+    "playfulness":"Игривост",
+    "enjoyment":"Наслаждение",
+    "charm":"Очарование",
+    "awareness":"Осознанность",
+    "courage":"Смелость",
+    "pleasure":"Удовольствие",
+    "sensuality":"Чувственность",
+    "energy":"Энергичность",
+    "extravagance":"Экстравагантность"
 }
