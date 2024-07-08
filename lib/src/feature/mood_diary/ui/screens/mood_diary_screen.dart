@@ -24,6 +24,13 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
   double _pageIndex = 0;
   bool isMoodDiarySelected = true;
 
+  // Добавьте состояние для хранения данных
+  String? selectedPoint;
+  String? selectedDescription;
+  double stressSliderValue = 2.5;
+  double selfAssessmentSliderValue = 2.5;
+  String notes = '';
+
   void toggleSelection() {
     setState(() {
       isMoodDiarySelected = !isMoodDiarySelected;
@@ -34,6 +41,37 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
     if (_pageIndex > 0) {
       _transition(pageController, (_pageIndex * 2).toInt() - 1);
     }
+  }
+
+  // Функции для обновления данных
+  void updateSelectedPoint(String point) {
+    setState(() {
+      selectedPoint = point;
+    });
+  }
+
+  void updateSelectedDescription(String description) {
+    setState(() {
+      selectedDescription = description;
+    });
+  }
+
+  void updateStressSliderValue(double value) {
+    setState(() {
+      stressSliderValue = value;
+    });
+  }
+
+  void updateSelfAssessmentSliderValue(double value) {
+    setState(() {
+      selfAssessmentSliderValue = value;
+    });
+  }
+
+  void updateNotes(String notes) {
+    setState(() {
+      this.notes = notes;
+    });
   }
 
   @override
@@ -78,6 +116,7 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
             const Gap(15),
             Expanded(
               child: PageView.builder(
+                key: const PageStorageKey('pageViewKey'),
                 physics: const NeverScrollableScrollPhysics(),
                 controller: pageController,
                 onPageChanged: (value) {
@@ -89,13 +128,21 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
                   switch (index) {
                     case 0:
                       return MoodPage(
-                        onNext: () => _transition(pageController, 1),
-                        onBack: _handleBack,
+                        onPointSelected: updateSelectedPoint,
+                        onDescriptionSelected: updateSelectedDescription,
+                        onStressSliderChange: updateStressSliderValue,
+                        onSelfAssessmentSliderChange:
+                            updateSelfAssessmentSliderValue,
+                        onNotesChange: updateNotes,
                       );
                     case 1:
                       return StatisticPage(
-                        onNext: () => _transition(pageController, 2),
-                        onBack: _handleBack,
+                        selectedPoint: selectedPoint,
+                        selectedDescription: selectedDescription,
+                        stressSliderValue: stressSliderValue + 1,
+                        selfAssessmentSliderValue:
+                            selfAssessmentSliderValue + 1,
+                        notes: notes,
                       );
                   }
                   return null;

@@ -5,39 +5,42 @@ import 'package:test_app_2/src/theme/app_text_style.dart';
 
 ElevatedButton btn({
   required BuildContext context,
+  required bool isActive,
 }) {
   return ElevatedButton(
-    onPressed: () {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: AppColors.white,
-            content: Text(
-              Localized.of(context).safeData,
-              style: AppTextStyle.style20w400.copyWith(
-                color: AppColors.black,
-              ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                child: Text(
-                  Localized.of(context).close,
-                  style: AppTextStyle.style14w400.copyWith(
-                    color: AppColors.black,
+    onPressed: isActive
+        ? () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  backgroundColor: AppColors.white,
+                  content: Text(
+                    Localized.of(context).safeData,
+                    style: AppTextStyle.style20w400.copyWith(
+                      color: AppColors.black,
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    },
+                  actions: <Widget>[
+                    TextButton(
+                      child: Text(
+                        Localized.of(context).close,
+                        style: AppTextStyle.style14w400.copyWith(
+                          color: AppColors.black,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          }
+        : null,
     style: ElevatedButton.styleFrom(
-      backgroundColor: AppColors.mandarin,
+      backgroundColor: isActive ? AppColors.mandarin : AppColors.grey4,
       minimumSize: const Size(double.infinity, 50),
     ),
     child: Text(

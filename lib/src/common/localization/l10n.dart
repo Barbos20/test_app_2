@@ -369,6 +369,56 @@ class Localized {
       args: [],
     );
   }
+
+  /// `Ошибка: данные доступны после сохранения!`
+  String get errorMessage {
+    return Intl.message(
+      'Ошибка: данные доступны после сохранения!',
+      name: 'errorMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Вы чувствуете {first} и {second}.`
+  String answerYouFeel(Object first, Object second) {
+    return Intl.message(
+      'Вы чувствуете $first и $second.',
+      name: 'answerYouFeel',
+      desc: '',
+      args: [first, second],
+    );
+  }
+
+  /// `Ваш уровень стресса по шкале от 1 до 6 составляет {count}.`
+  String answerStressLevel(Object count) {
+    return Intl.message(
+      'Ваш уровень стресса по шкале от 1 до 6 составляет $count.',
+      name: 'answerStressLevel',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Ваш уровень самооценки по шкале от 1 до 6 составляет {count}.`
+  String answerSelfAssessment(Object count) {
+    return Intl.message(
+      'Ваш уровень самооценки по шкале от 1 до 6 составляет $count.',
+      name: 'answerSelfAssessment',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Ваша заметка: {notes}.`
+  String answerNotes(Object notes) {
+    return Intl.message(
+      'Ваша заметка: $notes.',
+      name: 'answerNotes',
+      desc: '',
+      args: [notes],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Localized> {
