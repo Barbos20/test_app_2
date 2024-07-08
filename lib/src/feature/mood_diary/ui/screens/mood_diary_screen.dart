@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:test_app_2/gen/assets.gen.dart';
+import 'package:test_app_2/src/feature/mood_diary/ui/screens/calendar_page.dart';
 import 'package:test_app_2/src/feature/mood_diary/ui/screens/mood_page.dart';
 import 'package:test_app_2/src/feature/mood_diary/ui/screens/statistic_page.dart';
 import 'package:test_app_2/src/feature/mood_diary/widgets/switch_point.dart';
@@ -19,18 +20,17 @@ class MoodDiaryScreen extends StatefulWidget {
 }
 
 class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
-  final date = DateFormat('d MMMM HH:mm', 'ru').format(DateTime.now());
   late PageController pageController = PageController();
   double _pageIndex = 0;
   bool isMoodDiarySelected = true;
 
-  // Добавьте состояние для хранения данных
   String? selectedPoint;
   String? selectedDescription;
   double stressSliderValue = 2.5;
   double selfAssessmentSliderValue = 2.5;
   String notes = '';
-  bool isSaved = false; // Добавьте это состояние
+  bool isSaved = false;
+  DateTime selectedDate = DateTime.now();
 
   void toggleSelection() {
     setState(() {
@@ -38,13 +38,6 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
     });
   }
 
-  void _handleBack() {
-    if (_pageIndex > 0) {
-      _transition(pageController, (_pageIndex * 2).toInt() - 1);
-    }
-  }
-
-  // Функции для обновления данных
   void updateSelectedPoint(String point) {
     setState(() {
       selectedPoint = point;
@@ -81,8 +74,16 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
     });
   }
 
+  void updateSelectedDate(DateTime date) {
+    setState(() {
+      selectedDate = date;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final formattedDate = DateFormat('d MMMM yyyy', 'ru').format(selectedDate);
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
@@ -90,7 +91,7 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
           centerTitle: true,
           backgroundColor: AppColors.white,
           title: Text(
-            date,
+            formattedDate,
             style: AppTextStyle.style18w700.copyWith(
               color: AppColors.grey2,
             ),
@@ -99,7 +100,41 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  showModalBottomSheet(
+                    barrierColor: Colors.black.withOpacity(0.5),
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (BuildContext context) => FractionallySizedBox(
+                      heightFactor: 1.0,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          topRight: Radius.circular(16),
+                        ),
+                        child: Builder(
+                          builder: (context) {
+                            return CalendarScreen(
+                              selectedDate: selectedDate,
+                              onDateSelected: (date) {
+                                updateSelectedDate(date);
+
+                                final updatedDate = DateTime(
+                                  date.year,
+                                  date.month,
+                                  date.day,
+                                  9,
+                                  0,
+                                );
+                                updateSelectedDate(updatedDate);
+                              },
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  );
+                },
                 child: SvgPicture.asset(
                   Assets.icons.calendar,
                   width: 24,
@@ -141,7 +176,7 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
                         onSelfAssessmentSliderChange:
                             updateSelfAssessmentSliderValue,
                         onNotesChange: updateNotes,
-                        onSave: updateIsSaved, // Передайте функцию обновления
+                        onSave: updateIsSaved,
                       );
                     case 1:
                       return StatisticPage(

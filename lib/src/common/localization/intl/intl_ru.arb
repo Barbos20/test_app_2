@@ -35,5 +35,17 @@
     "answerYouFeel":"Вы чувствуете {first} и {second}.",
     "answerStressLevel":"Ваш уровень стресса по шкале от 1 до 6 составляет {count}.",
     "answerSelfAssessment":"Ваш уровень самооценки по шкале от 1 до 6 составляет {count}.",
-    "answerNotes":"Ваша заметка: {notes}."
+    "answerNotes":"Ваша заметка: {notes}.",
+    "january": "Январь",
+    "february": "Февраль",
+    "march": "Март",
+    "april": "Апрель",
+    "may": "Май",
+    "june": "Июнь",
+    "july": "Июль",
+    "august": "Август",
+    "september": "Сентябрь",
+    "october": "Октябрь",
+    "november": "Ноябрь",
+    "december": "Декабрь"
 }
