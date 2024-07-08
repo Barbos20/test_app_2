@@ -97,8 +97,10 @@ class SwitchPointState extends State<SwitchPoint> {
                 Row(
                   key: rowKey,
                   children: [
-                    GestureDetector(
+                    InkWell(
                       key: firstKey,
+                      highlightColor: Colors.transparent,
+                      borderRadius: BorderRadius.circular(47),
                       onTap: () {
                         if (!widget.isMoodDiarySelected) {
                           widget.toggleSelection();
@@ -131,8 +133,10 @@ class SwitchPointState extends State<SwitchPoint> {
                         ),
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       key: secondKey,
+                      highlightColor: Colors.transparent,
+                      borderRadius: BorderRadius.circular(47),
                       onTap: () {
                         if (widget.isMoodDiarySelected) {
                           widget.toggleSelection();
