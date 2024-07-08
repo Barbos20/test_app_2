@@ -14,7 +14,7 @@ class MoodPage extends StatefulWidget {
   final Function(double) onStressSliderChange;
   final Function(double) onSelfAssessmentSliderChange;
   final Function(String) onNotesChange;
-  final Function(bool) onSave; // Добавьте это
+  final Function(bool) onSave;
 
   const MoodPage({
     super.key,
@@ -23,7 +23,7 @@ class MoodPage extends StatefulWidget {
     required this.onStressSliderChange,
     required this.onSelfAssessmentSliderChange,
     required this.onNotesChange,
-    required this.onSave, // Добавьте это
+    required this.onSave,
   });
 
   @override
