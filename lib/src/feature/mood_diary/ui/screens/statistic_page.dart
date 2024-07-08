@@ -9,6 +9,7 @@ class StatisticPage extends StatefulWidget {
   final double stressSliderValue;
   final double selfAssessmentSliderValue;
   final String notes;
+  final bool isSaved;
 
   const StatisticPage({
     super.key,
@@ -17,6 +18,7 @@ class StatisticPage extends StatefulWidget {
     required this.stressSliderValue,
     required this.selfAssessmentSliderValue,
     required this.notes,
+    required this.isSaved,
   });
 
   @override
@@ -29,7 +31,8 @@ class _StatisticPageState extends State<StatisticPage>
   Widget build(BuildContext context) {
     super.build(context);
     return Column(
-      children: widget.selectedPoint == null ||
+      children: !widget.isSaved ||
+              widget.selectedPoint == null ||
               widget.selectedDescription == null ||
               widget.stressSliderValue == 3.5 ||
               widget.selfAssessmentSliderValue == 3.5 ||
@@ -52,25 +55,21 @@ class _StatisticPageState extends State<StatisticPage>
                 ),
               ),
               Text(
-                Localized.of(context).answerStressLevel(
-                  widget.stressSliderValue,
-                ),
+                Localized.of(context)
+                    .answerStressLevel(widget.stressSliderValue as Object),
                 style: AppTextStyle.style14w400.copyWith(
                   color: AppColors.black,
                 ),
               ),
               Text(
                 Localized.of(context).answerSelfAssessment(
-                  widget.selfAssessmentSliderValue,
-                ),
+                    widget.selfAssessmentSliderValue as Object),
                 style: AppTextStyle.style14w400.copyWith(
                   color: AppColors.black,
                 ),
               ),
               Text(
-                Localized.of(context).answerNotes(
-                  widget.notes,
-                ),
+                Localized.of(context).answerNotes(widget.notes as Object),
                 style: AppTextStyle.style14w400.copyWith(
                   color: AppColors.black,
                 ),

@@ -6,10 +6,12 @@ import 'package:test_app_2/src/theme/app_text_style.dart';
 ElevatedButton btn({
   required BuildContext context,
   required bool isActive,
+  required VoidCallback onSave,
 }) {
   return ElevatedButton(
     onPressed: isActive
         ? () {
+            onSave();
             showDialog(
               context: context,
               builder: (BuildContext context) {

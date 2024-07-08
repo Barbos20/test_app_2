@@ -14,6 +14,7 @@ class MoodPage extends StatefulWidget {
   final Function(double) onStressSliderChange;
   final Function(double) onSelfAssessmentSliderChange;
   final Function(String) onNotesChange;
+  final Function(bool) onSave; // Добавьте это
 
   const MoodPage({
     super.key,
@@ -22,6 +23,7 @@ class MoodPage extends StatefulWidget {
     required this.onStressSliderChange,
     required this.onSelfAssessmentSliderChange,
     required this.onNotesChange,
+    required this.onSave, // Добавьте это
   });
 
   @override
@@ -31,6 +33,7 @@ class MoodPage extends StatefulWidget {
 class _MoodPageState extends State<MoodPage>
     with AutomaticKeepAliveClientMixin {
   TextEditingController notesController = TextEditingController();
+  bool isSaved = false;
   String? selectedPoint;
   String? selectedDescription;
   double stressSliderValue = 2.5;
@@ -126,6 +129,12 @@ class _MoodPageState extends State<MoodPage>
                       selectedDescription != null &&
                       stressSliderValue != 2.5 &&
                       selfAssessmentSliderValue != 2.5,
+                  onSave: () {
+                    setState(() {
+                      isSaved = true;
+                    });
+                    widget.onSave(true);
+                  },
                 ),
               ],
             ),

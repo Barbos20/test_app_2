@@ -30,6 +30,7 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
   double stressSliderValue = 2.5;
   double selfAssessmentSliderValue = 2.5;
   String notes = '';
+  bool isSaved = false; // Добавьте это состояние
 
   void toggleSelection() {
     setState(() {
@@ -71,6 +72,12 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
   void updateNotes(String notes) {
     setState(() {
       this.notes = notes;
+    });
+  }
+
+  void updateIsSaved(bool value) {
+    setState(() {
+      isSaved = value;
     });
   }
 
@@ -134,6 +141,7 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
                         onSelfAssessmentSliderChange:
                             updateSelfAssessmentSliderValue,
                         onNotesChange: updateNotes,
+                        onSave: updateIsSaved, // Передайте функцию обновления
                       );
                     case 1:
                       return StatisticPage(
@@ -143,6 +151,7 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
                         selfAssessmentSliderValue:
                             selfAssessmentSliderValue + 1,
                         notes: notes,
+                        isSaved: isSaved,
                       );
                   }
                   return null;
