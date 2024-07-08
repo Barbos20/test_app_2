@@ -4,11 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:test_app_2/gen/assets.gen.dart';
-import 'package:test_app_2/src/feature/mood_diary/widgets/feel.dart';
+import 'package:test_app_2/src/feature/mood_diary/ui/screens/mood_page.dart';
+import 'package:test_app_2/src/feature/mood_diary/ui/screens/statistic_page.dart';
 import 'package:test_app_2/src/feature/mood_diary/widgets/switch_point.dart';
 import 'package:test_app_2/src/theme/app_color.dart';
 import 'package:test_app_2/src/theme/app_text_style.dart';
-import 'package:test_app_2/src/widgets/body_with_padding.dart';
 
 @RoutePage()
 class MoodDiaryScreen extends StatefulWidget {
@@ -19,10 +19,10 @@ class MoodDiaryScreen extends StatefulWidget {
 }
 
 class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
-  String? selectedPoint;
-  String? selectedDescription;
-  bool isMoodDiarySelected = true;
   final date = DateFormat('d MMMM HH:mm', 'ru').format(DateTime.now());
+  late PageController pageController = PageController();
+  double _pageIndex = 0;
+  bool isMoodDiarySelected = true;
 
   void toggleSelection() {
     setState(() {
@@ -30,16 +30,10 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
     });
   }
 
-  void onPointSelected(String point) {
-    setState(() {
-      selectedPoint = point;
-    });
-  }
-
-  void onDescriptionSelected(String description) {
-    setState(() {
-      selectedDescription = description;
-    });
+  void _handleBack() {
+    if (_pageIndex > 0) {
+      _transition(pageController, (_pageIndex * 2).toInt() - 1);
+    }
   }
 
   @override
@@ -47,48 +41,77 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 22),
-          child: AppBar(
-            title: Text(
-              date,
-              style: AppTextStyle.style18w700.copyWith(color: AppColors.grey2),
+        child: AppBar(
+          centerTitle: true,
+          backgroundColor: AppColors.white,
+          title: Text(
+            date,
+            style: AppTextStyle.style18w700.copyWith(
+              color: AppColors.grey2,
             ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: SvgPicture.asset(
-                    Assets.icons.calendar,
-                    width: 24,
-                    height: 24,
-                  ),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: GestureDetector(
+                onTap: () {},
+                child: SvgPicture.asset(
+                  Assets.icons.calendar,
+                  width: 24,
+                  height: 24,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-      body: bodyWithPadding(
-        child: Center(
-          child: Column(
-            children: [
-              SwitchPoint(
-                toggleSelection: toggleSelection,
-                isMoodDiarySelected: isMoodDiarySelected,
+      body: SafeArea(
+        child: Column(
+          children: [
+            SwitchPoint(
+              toggleSelection: () {
+                toggleSelection();
+                _transition(pageController, isMoodDiarySelected ? 0 : 1);
+              },
+              isMoodDiarySelected: isMoodDiarySelected,
+            ),
+            const Gap(15),
+            Expanded(
+              child: PageView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: pageController,
+                onPageChanged: (value) {
+                  setState(() {
+                    _pageIndex = value / 9;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  switch (index) {
+                    case 0:
+                      return MoodPage(
+                        onNext: () => _transition(pageController, 1),
+                        onBack: _handleBack,
+                      );
+                    case 1:
+                      return StatisticPage(
+                        onNext: () => _transition(pageController, 2),
+                        onBack: _handleBack,
+                      );
+                  }
+                  return null;
+                },
               ),
-              const Gap(30),
-              Feel(
-                selectedPoint: selectedPoint,
-                selectedDescription: selectedDescription,
-                onPointSelected: onPointSelected,
-                onDescriptionSelected: onDescriptionSelected,
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
+_transition(PageController pageController, int pageIndex) =>
+    pageController.animateToPage(
+      pageIndex,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOutCubic,
+    );

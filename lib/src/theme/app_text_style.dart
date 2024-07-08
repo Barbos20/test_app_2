@@ -13,6 +13,12 @@ abstract class AppTextStyle {
     fontSize: 12,
     fontWeight: FontWeight.w500,
   );
+  //fontSize 14
+  static const TextStyle style14w400 = TextStyle(
+    fontFamily: 'Nunito',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
   //fontSize 16
   static const TextStyle style16w800 = TextStyle(
     fontFamily: 'Nunito',
@@ -24,5 +30,11 @@ abstract class AppTextStyle {
     fontFamily: 'Nunito',
     fontSize: 18,
     fontWeight: FontWeight.w700,
+  );
+  //fontSize 28
+  static const TextStyle style20w400 = TextStyle(
+    fontFamily: 'Nunito',
+    fontSize: 20,
+    fontWeight: FontWeight.w400,
   );
 }

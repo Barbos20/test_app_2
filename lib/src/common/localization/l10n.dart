@@ -349,6 +349,26 @@ class Localized {
       args: [],
     );
   }
+
+  /// `Ваши данные записаны и сохранены в статистике.`
+  String get safeData {
+    return Intl.message(
+      'Ваши данные записаны и сохранены в статистике.',
+      name: 'safeData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Закрыть`
+  String get close {
+    return Intl.message(
+      'Закрыть',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Localized> {
