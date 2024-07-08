@@ -22,6 +22,7 @@ class StressSlider extends StatefulWidget {
 
 class _StressSliderState extends State<StressSlider> {
   bool _isMoved = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,6 +33,15 @@ class _StressSliderState extends State<StressSlider> {
             children: [
               GestureDetector(
                 onPanUpdate: (details) {
+                  setState(() {
+                    _isMoved = true;
+                  });
+                  double localValue =
+                      (details.localPosition.dx / constraints.maxWidth)
+                          .clamp(0.0, 1.0);
+                  widget.onChanged(_getClosestStop(localValue));
+                },
+                onTapDown: (details) {
                   setState(() {
                     _isMoved = true;
                   });

@@ -32,7 +32,7 @@ class _SelfAssessmentState extends State<SelfAssessment> {
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            Localized.of(context).stressLevel,
+            Localized.of(context).selfAssessment,
             style: AppTextStyle.style16w800.copyWith(
               color: AppColors.black,
             ),
